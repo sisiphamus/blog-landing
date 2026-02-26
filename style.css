@@ -1,0 +1,929 @@
+/* ============================================================
+   EDITORIAL BLOG LANDING PAGE
+   A magazine-quality stylesheet inspired by Monocle, Kinfolk,
+   and Cereal Magazine. Refined typography, generous whitespace,
+   and deliberate restraint.
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   DESIGN TOKENS
+   ---------------------------------------------------------- */
+:root {
+  /* Palette */
+  --color-bg:          #FAFAF7;
+  --color-bg-warm:     #F5F3EE;
+  --color-text:        #1A1A1A;
+  --color-text-medium: #4A4A46;
+  --color-text-light:  #8A8A84;
+  --color-accent:      #C4A882;
+  --color-accent-hover:#B39670;
+  --color-border:      #E8E4DF;
+  --color-border-light:#F0EDE8;
+  --color-white:       #FFFFFF;
+
+  /* Typography */
+  --font-serif:   "Playfair Display", Georgia, "Times New Roman", Times, serif;
+  --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                  Helvetica, Arial, sans-serif;
+
+  /* Spacing scale (based on 8px grid) */
+  --space-xs:   0.25rem;   /*  4px */
+  --space-sm:   0.5rem;    /*  8px */
+  --space-md:   1rem;      /* 16px */
+  --space-lg:   1.5rem;    /* 24px */
+  --space-xl:   2rem;      /* 32px */
+  --space-2xl:  3rem;      /* 48px */
+  --space-3xl:  4rem;      /* 64px */
+  --space-4xl:  6rem;      /* 96px */
+  --space-5xl:  8rem;      /* 128px */
+
+  /* Transitions */
+  --ease-smooth:   0.4s ease;
+  --ease-fast:     0.25s ease;
+
+  /* Layout */
+  --max-width:        1200px;
+  --max-width-narrow: 720px;
+  --nav-height:       72px;
+}
+
+
+/* ----------------------------------------------------------
+   RESETS & FOUNDATIONS
+   ---------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--ease-smooth);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+
+/* ----------------------------------------------------------
+   NAVIGATION
+   Minimal. Purposeful. A thin line grounds it.
+   ---------------------------------------------------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  padding: 0 var(--space-xl);
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(250, 250, 247, 0.92);
+}
+
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  transition: opacity var(--ease-smooth);
+}
+
+.nav-logo:hover {
+  opacity: 0.7;
+  color: var(--color-text);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.nav-links a {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-medium);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width var(--ease-smooth);
+}
+
+.nav-links a:hover {
+  color: var(--color-text);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+
+/* ----------------------------------------------------------
+   HERO SECTION
+   The featured article. Large, confident, editorial.
+   ---------------------------------------------------------- */
+.hero {
+  padding: var(--space-3xl) var(--space-xl) var(--space-4xl);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.hero-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.hero-link:hover {
+  color: inherit;
+}
+
+.hero-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  margin-bottom: var(--space-2xl);
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--ease-smooth);
+}
+
+.hero-image-wrapper:hover .hero-image {
+  transform: scale(1.03);
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-category {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1.5px solid var(--color-accent);
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+  transition: color var(--ease-smooth);
+}
+
+.hero-title a:hover {
+  color: var(--color-text-medium);
+}
+
+.hero-meta {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  letter-spacing: 0.03em;
+  margin-bottom: var(--space-md);
+}
+
+.hero-excerpt {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-text-medium);
+  max-width: 640px;
+  margin-bottom: var(--space-lg);
+}
+
+.hero-link {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+  padding-bottom: 2px;
+  transition: color var(--ease-smooth), border-color var(--ease-smooth);
+}
+
+.hero-link:hover {
+  color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+
+/* ----------------------------------------------------------
+   SECTION DIVIDER
+   Quiet rhythm between areas.
+   ---------------------------------------------------------- */
+.section-divider {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-xl) var(--space-2xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.section-title {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  white-space: nowrap;
+}
+
+.section-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+
+/* ----------------------------------------------------------
+   ARTICLES GRID
+   Two columns of carefully spaced cards. No borders;
+   whitespace alone defines separation.
+   ---------------------------------------------------------- */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3xl) var(--space-2xl);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-xl) var(--space-4xl);
+}
+
+.article-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.article-link:hover {
+  color: inherit;
+}
+
+.article-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  margin-bottom: var(--space-lg);
+}
+
+.article-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--ease-smooth);
+}
+
+.article-image-wrapper:hover .article-image {
+  transform: scale(1.04);
+}
+
+.article-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.article-category {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+  align-self: flex-start;
+}
+
+.article-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+  transition: color var(--ease-smooth);
+}
+
+.article-title a:hover {
+  color: var(--color-accent-hover);
+}
+
+.article-meta {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-md);
+}
+
+.article-excerpt {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--color-text-medium);
+  margin-bottom: var(--space-md);
+}
+
+.article-link {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color var(--ease-smooth);
+}
+
+.article-link:hover {
+  color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+
+/* ----------------------------------------------------------
+   FOOTER
+   The quiet end. Minimal. Barely there.
+   ---------------------------------------------------------- */
+.footer {
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-xl);
+}
+
+.footer-left {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  letter-spacing: 0.02em;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.footer-right a {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  transition: color var(--ease-smooth);
+}
+
+.footer-right a:hover {
+  color: var(--color-accent);
+}
+
+
+/* ----------------------------------------------------------
+   INDIVIDUAL POST PAGE
+   Long-form reading. Everything serves the text.
+   Measure constrained, type optimised for sustained reading.
+   ---------------------------------------------------------- */
+.post-page {
+  background-color: var(--color-bg);
+}
+
+.post-hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-xl) 0;
+}
+
+.post-hero-image {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+}
+
+.post-header {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-xl) var(--space-2xl);
+  text-align: center;
+}
+
+.post-category {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1.5px solid var(--color-accent);
+}
+
+.post-title {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+}
+
+.post-meta {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  letter-spacing: 0.03em;
+}
+
+.post-meta span + span::before {
+  content: "\2014";
+  margin: 0 0.6em;
+  color: var(--color-border);
+}
+
+/* ----------------------------------------------------------
+   POST BODY
+   The reading experience. Every detail matters:
+   comfortable measure, breathing room between paragraphs,
+   pull quotes that arrest the eye.
+   ---------------------------------------------------------- */
+.post-body {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+  padding: 0 var(--space-xl) var(--space-4xl);
+}
+
+.post-body p {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.78;
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+}
+
+.post-body p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.8rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.85;
+  margin-right: 0.1em;
+  margin-top: 0.07em;
+  color: var(--color-text);
+}
+
+.post-body h2 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-top: var(--space-3xl);
+  margin-bottom: var(--space-lg);
+}
+
+.post-body h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-md);
+}
+
+.post-body blockquote {
+  position: relative;
+  margin: var(--space-3xl) 0;
+  padding: var(--space-2xl) 0 var(--space-2xl) var(--space-2xl);
+  border-left: 3px solid var(--color-accent);
+}
+
+.post-body blockquote p {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--color-text-medium);
+  margin-bottom: 0;
+}
+
+.post-body blockquote p:first-of-type::first-letter {
+  font-size: inherit;
+  font-weight: inherit;
+  float: none;
+  line-height: inherit;
+  margin-right: 0;
+  margin-top: 0;
+}
+
+.post-body ul,
+.post-body ol {
+  margin-bottom: var(--space-lg);
+  padding-left: var(--space-xl);
+}
+
+.post-body ul {
+  list-style: disc;
+}
+
+.post-body ol {
+  list-style: decimal;
+}
+
+.post-body li {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 1.78;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.post-body a {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--ease-smooth),
+              color var(--ease-smooth);
+}
+
+.post-body a:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+.post-body figure {
+  margin: var(--space-3xl) calc(-1 * var(--space-xl));
+}
+
+.post-body figure img {
+  width: 100%;
+}
+
+.post-body figcaption {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-top: var(--space-md);
+  letter-spacing: 0.02em;
+}
+
+.post-body hr {
+  border: none;
+  height: 1px;
+  background-color: var(--color-border);
+  margin: var(--space-3xl) auto;
+  max-width: 120px;
+}
+
+.post-body code {
+  font-size: 0.9em;
+  background-color: var(--color-bg-warm);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+.post-body pre {
+  background-color: var(--color-bg-warm);
+  padding: var(--space-lg);
+  overflow-x: auto;
+  margin-bottom: var(--space-lg);
+  border-radius: 3px;
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+
+/* ----------------------------------------------------------
+   RESPONSIVE
+   At narrow viewports the grid collapses, type scales down,
+   and the layout gracefully reduces to a single column.
+   ---------------------------------------------------------- */
+
+/* Tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .articles-grid {
+    gap: var(--space-2xl) var(--space-xl);
+  }
+
+  .post-title {
+    font-size: 2.5rem;
+  }
+}
+
+/* Tablets portrait */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 60px;
+  }
+
+  .nav {
+    padding: 0 var(--space-md);
+  }
+
+  .nav-links {
+    gap: var(--space-lg);
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+  }
+
+  .hero {
+    padding: var(--space-xl) var(--space-md) var(--space-2xl);
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-excerpt {
+    font-size: 1rem;
+  }
+
+  .hero-image-wrapper {
+    margin-bottom: var(--space-lg);
+  }
+
+  .section-divider {
+    padding: 0 var(--space-md) var(--space-lg);
+  }
+
+  /* Grid collapses to single column */
+  .articles-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    padding: 0 var(--space-md) var(--space-2xl);
+  }
+
+  .article-title {
+    font-size: 1.3rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .footer-right {
+    gap: var(--space-lg);
+  }
+
+  /* Post page */
+  .post-hero {
+    padding: var(--space-md) var(--space-md) 0;
+  }
+
+  .post-header {
+    padding: var(--space-xl) var(--space-md) var(--space-lg);
+  }
+
+  .post-title {
+    font-size: 2rem;
+  }
+
+  .post-body {
+    padding: 0 var(--space-md) var(--space-2xl);
+  }
+
+  .post-body p {
+    font-size: 1.05rem;
+  }
+
+  .post-body h2 {
+    font-size: 1.5rem;
+  }
+
+  .post-body blockquote {
+    padding-left: var(--space-lg);
+    margin: var(--space-2xl) 0;
+  }
+
+  .post-body blockquote p {
+    font-size: 1.15rem;
+  }
+
+  .post-body figure {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .nav-logo {
+    font-size: 1.15rem;
+  }
+
+  .nav-links {
+    gap: var(--space-md);
+  }
+
+  .nav-links a {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+  }
+
+  .hero-title {
+    font-size: 1.65rem;
+  }
+
+  .hero-category {
+    font-size: 0.65rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-meta {
+    font-size: 0.75rem;
+  }
+
+  .hero-excerpt {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .article-title {
+    font-size: 1.2rem;
+  }
+
+  .article-excerpt {
+    font-size: 0.88rem;
+  }
+
+  .post-title {
+    font-size: 1.65rem;
+  }
+
+  .post-body p:first-of-type::first-letter {
+    font-size: 3rem;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   PRINT STYLES
+   Because an editorial site should print beautifully.
+   ---------------------------------------------------------- */
+@media print {
+  .nav,
+  .footer {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+    font-size: 11pt;
+  }
+
+  .hero-title,
+  .article-title,
+  .post-title {
+    color: black;
+  }
+
+  .hero-image-wrapper,
+  .article-image-wrapper {
+    break-inside: avoid;
+  }
+
+  .articles-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .post-body {
+    max-width: 100%;
+  }
+
+  .post-body a {
+    text-decoration: underline;
+    color: black;
+  }
+
+  .post-body a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}
